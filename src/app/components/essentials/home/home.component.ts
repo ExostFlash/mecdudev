@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AccueilComponent } from './all/accueil/accueil.component';
 import { AproposComponent } from './all/apropos/apropos.component';
 import { ProjectComponent } from './all/project/project.component';
-import { ClientsComponent } from './all/clients/clients.component';
-import { ServicesComponent } from './all/services/services.component';
 import { ContactComponent } from './all/contact/contact.component';
 
 @Component({
