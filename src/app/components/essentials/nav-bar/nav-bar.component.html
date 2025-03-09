@@ -1,1 +1,22 @@
-<p>nav-bar works!</p>
+<div class="navbar-div">
+    <nav class="navbar">
+        <a href="/"><img src="/assets/images/logo/initial.png" alt="Logo TeamFlash" class="logo"></a>
+        <ul>
+            <li>
+                <a routerLink="/" 
+                routerLinkActive="active-link" 
+                [routerLinkActiveOptions]="{ exact: isHomeActiveBool() }"
+                [class.active-link]="isHomeActive()">Accueil</a>
+            </li>
+            <li>
+                <a routerLink="#about" routerLinkActive="active-link">À propos</a>
+            </li>
+            <li>
+                <a routerLink="#projet" routerLinkActive="active-link">Projets</a>
+            </li>
+            <li>
+                <a routerLink="#contact" routerLinkActive="active-link">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</div>

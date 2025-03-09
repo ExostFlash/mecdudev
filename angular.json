@@ -35,14 +35,24 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/assets/images"
+              "src/assets/images/"
             ],
             "styles": [
               "src/styles.css",
-              "src/app/assets/css/styles.css"
+              "src/assets/css/styles.css",
+              "src/assets/css/loader.css",
+              "src/assets/css/carousel.css",
+              "src/assets/css/slider.css",
+              "src/assets/css/contact.css",
+              "src/assets/css/footer.css"
             ],
             "scripts": [
-              "src/app/assets/javaScript/main.js"
+              "src/assets/javaScript/main.js",
+              "src/assets/javaScript/scrollPosition.js",
+              "src/assets/javaScript/loaderMatrix.js",
+              "src/assets/javaScript/carousel.js",
+              "src/assets/javaScript/slider-client.js",
+              "src/assets/javaScript/contact.js"
             ]
           },
           "configurations": {
