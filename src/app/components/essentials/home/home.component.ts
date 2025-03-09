@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AccueilComponent } from './all/accueil/accueil.component';
@@ -20,7 +20,9 @@ export class HomeComponent implements AfterViewInit {
 
   sections = [
     { id: 'home', component: AccueilComponent },
-    { id: 'apropos', component: AproposComponent },
+    { id: 'about', component: AproposComponent },
+    // { id: 'clients', component: AproposComponent },
+    // { id: 'services', component: ServicesComponent },
     { id: 'project', component: ProjectComponent },
     { id: 'contact', component: ContactComponent }
   ];
@@ -42,8 +44,9 @@ export class HomeComponent implements AfterViewInit {
       const sectionElement = this.renderer.createElement('section');
       this.renderer.setAttribute(sectionElement, 'id', id);
 
-      if (id == 'home') {
-        this.renderer.addClass(sectionElement, 'particles-section'); // Ajouter une classe CSS optionnelle
+      // Ajouter une classe CSS spécifique à chaque section (par exemple, particles-section pour 'home')
+      if (id === 'home') {
+        this.renderer.addClass(sectionElement, 'particles-section');
       }
 
       // 2️⃣ Ajouter la section au DOM
@@ -68,7 +71,7 @@ export class HomeComponent implements AfterViewInit {
       const rect = section.getBoundingClientRect();
       // Vérifie si la section est visible dans le viewport
       if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-        section.classList.add('visible'); // Affiche la section
+        section.classList.add('visible'); // Affiche la section en ajoutant la classe visible
       } else {
         section.classList.remove('visible'); // Masque la section si elle n'est pas visible
       }
