@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, AfterViewInit, Renderer2, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AccueilComponent } from './all/accueil/accueil.component';
@@ -17,62 +17,42 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild('sectionContainer', { read: ViewContainerRef }) sectionContainer!: ViewContainerRef;
 
   sections = [
-    { id: 'home', component: AccueilComponent },
-    { id: 'about', component: AproposComponent },
-    // { id: 'clients', component: AproposComponent },
-    // { id: 'services', component: ServicesComponent },
-    { id: 'project', component: ProjectComponent },
-    { id: 'contact', component: ContactComponent }
+    { id: 'home', component: AccueilComponent, css: ['particles-section'] },
+    { id: 'about', component: AproposComponent, css: [] },
+    { id: 'project', component: ProjectComponent, css: [] },
+    { id: 'contact', component: ContactComponent, css: [] }
   ];
 
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit() {
     this.loadSections();
-    this.checkSectionVisibility(); // Vérifie la visibilité des sections au démarrage
-    window.addEventListener('scroll', this.onScroll.bind(this)); // Ajoute un écouteur pour le scroll
   }
 
-  loadSections() {
+  private loadSections(): void {
     if (!this.sectionContainer) return;
-    this.sectionContainer.clear(); // Nettoyer le conteneur avant d'ajouter de nouvelles sections
+    this.sectionContainer.clear();
 
-    this.sections.forEach(({ id, component }) => {
-      // 1️⃣ Créer dynamiquement une balise <section>
-      const sectionElement = this.renderer.createElement('section');
-      this.renderer.setAttribute(sectionElement, 'id', id);
-
-      // Ajouter une classe CSS spécifique à chaque section (par exemple, particles-section pour 'home')
-      if (id === 'home') {
-        this.renderer.addClass(sectionElement, 'particles-section');
-      }
-
-      // 2️⃣ Ajouter la section au DOM
-      const hostElement = this.sectionContainer.element.nativeElement;
-      this.renderer.appendChild(hostElement, sectionElement);
-
-      // 3️⃣ Créer dynamiquement le composant
-      const componentRef = this.sectionContainer.createComponent(component);
-
-      // 4️⃣ Attacher le composant à la section
-      this.renderer.appendChild(sectionElement, componentRef.location.nativeElement);
+    this.sections.forEach(({ id, component, css }) => {
+      const sectionElement = this.createSection(id, css);
+      this.appendComponentToSection(sectionElement, component);
     });
   }
 
-  onScroll() {
-    this.checkSectionVisibility(); // Vérifie la visibilité des sections à chaque scroll
+  private createSection(id: string, cssClasses: string[]): HTMLElement {
+    const sectionElement = this.renderer.createElement('section');
+    this.renderer.setAttribute(sectionElement, 'id', id);
+
+    cssClasses.forEach(className => this.renderer.addClass(sectionElement, className));
+
+    const hostElement = this.sectionContainer.element.nativeElement;
+    this.renderer.appendChild(hostElement, sectionElement);
+
+    return sectionElement;
   }
 
-  checkSectionVisibility() {
-    const sections = document.querySelectorAll('section');
-    sections.forEach((section: HTMLElement) => {
-      const rect = section.getBoundingClientRect();
-      // Vérifie si la section est visible dans le viewport
-      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-        section.classList.add('visible'); // Affiche la section en ajoutant la classe visible
-      } else {
-        section.classList.remove('visible'); // Masque la section si elle n'est pas visible
-      }
-    });
+  private appendComponentToSection(sectionElement: HTMLElement, component: Type<any>): void {
+    const componentRef = this.sectionContainer.createComponent(component);
+    this.renderer.appendChild(sectionElement, componentRef.location.nativeElement);
   }
 }
