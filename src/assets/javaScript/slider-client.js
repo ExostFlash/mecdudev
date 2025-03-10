@@ -2,42 +2,54 @@ const nosClients = [
   {
     Name: "Instagram",
     Link: "instagram.com",
-    Logo: "images/socialMedia/icon-instagram.png",
+    Logo: "no.png",
   },
   {
     Name: "Discord",
     Link: "discord.com",
-    Logo: "images/socialMedia/icon-discord.png",
+    Logo: "no.png",
   },
   {
     Name: "Linkedin",
     Link: "linkedin.com",
-    Logo: "images/socialMedia/icon-linkedin.png",
+    Logo: "no.png",
   },
   {
     Name: "Github",
     Link: "github.com",
-    Logo: "images/socialMedia/icon-github.png",
+    Logo: "no.png",
   },
 ];
 
-/* const sliderItems = imageNames.concat(imageNames); */
-
+// Duplication des éléments pour le slider
 const sliderItems = nosClients.concat(nosClients);
 
+// Récupération de l'élément du DOM
 const slider = document.getElementById("slide-track");
 
-sliderItems.forEach((sliderItem) => {
-  const a = document.createElement("a");
-  const img = document.createElement("img");
+// Vérifie si l'élément slider existe avant d'ajouter les éléments
+if (slider) {
+  sliderItems.forEach((sliderItem) => {
+    const a = document.createElement("a");
+    const img = document.createElement("img");
 
-  a.href = "https://" + sliderItem.Link;
-  a.target = "_blanc";
+    // Ajoute "https://" si le lien ne contient pas déjà un protocole
+    const url =
+      sliderItem.Link.startsWith("http://") || sliderItem.Link.startsWith("https://")
+        ? sliderItem.Link
+        : "https://" + sliderItem.Link;
 
-  img.src = "./assets/" + sliderItem.Logo;
-  img.alt = "Logo " + sliderItem.Name;
-  img.className = "slide-item";
+    a.href = url;
+    a.target = "_blank"; // Correction de "_blanc" en "_blank"
 
-  a.appendChild(img);
-  slider.appendChild(a);
-});
+    // Ajout d'une vérification pour l'image
+    img.src = `/assets/images/clients/${sliderItem.Logo || "default.png"}`;
+    img.alt = `Logo ${sliderItem.Name}`;
+    img.className = "slide-item";
+
+    a.appendChild(img);
+    slider.appendChild(a);
+  });
+} else {
+  console.warn("L'élément #slide-track n'a pas été trouvé dans le DOM.");
+}

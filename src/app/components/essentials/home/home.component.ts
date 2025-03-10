@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AccueilComponent } from './all/accueil/accueil.component';
 import { AproposComponent } from './all/apropos/apropos.component';
 import { ProjectComponent } from './all/project/project.component';
+import { ClientsComponent } from './all/clients/clients.component';
 import { ContactComponent } from './all/contact/contact.component';
 
 @Component({
@@ -20,6 +21,7 @@ export class HomeComponent implements AfterViewInit {
     { id: 'home', component: AccueilComponent, css: ['particles-section'] },
     { id: 'about', component: AproposComponent, css: [] },
     { id: 'project', component: ProjectComponent, css: [] },
+    /* { id: 'clients', component: ClientsComponent, css: [] }, */
     { id: 'contact', component: ContactComponent, css: [] }
   ];
 
