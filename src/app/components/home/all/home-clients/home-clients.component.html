@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="text">
+        <h2>Nos Clients</h2>
+        <div class="line" style="width: 45%;"></div>
+        <div class="container">
+            <div class="clients-slider">
+                <div class="slide-track">
+                    <a *ngFor="let client of nosClients.concat(nosClients)" 
+                       [href]="getSafeUrl(client.Link)" 
+                       target="_blank">
+                        <img [src]="'/assets/images/clients/' + (client.Logo || 'default.png')" 
+                             [alt]="'Logo ' + client.Name" 
+                             class="slide-item">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
