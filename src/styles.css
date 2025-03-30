@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 .active-link {
-    color: blue !important; /* Jaune Bootstrap */
+    color: #C30300 !important;
     font-weight: bold;
-    border-bottom: 2px solid #ffc107;
+    border-bottom: 2px solid red;
 }
 
 .bi-2X {
