@@ -18,9 +18,19 @@ import { HomeProjetsComponent } from './components/home/all/home-projets/home-pr
 import { HomeServicesComponent } from './components/home/all/home-services/home-services.component';
 import { HomeContactComponent } from './components/home/all/home-contact/home-contact.component';
 
+/* Abouts */
+import { AboutsComponent } from './components/abouts/abouts.component';
+import { AboutAccueilComponent } from './components/abouts/all/about-accueil/about-accueil.component';
+
+/* Projets */
+import { ProjetsComponent } from './components/projets/projets.component';
+import { ProjetAccueilComponent } from './components/projets/all/projet-accueil/projet-accueil.component';
+
 /* Contact */
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactAccueilComponent } from './components/contact/all/contact-accueil/contact-accueil.component';
+import { ContactMessageComponent } from './components/contact/all/contact-message/contact-message.component';
+import { ContactCordoComponent } from './components/contact/all/contact-cordo/contact-cordo.component';
 
 
 @NgModule({
@@ -37,13 +47,21 @@ import { ContactAccueilComponent } from './components/contact/all/contact-accuei
     HomeProjetsComponent,
     HomeServicesComponent,
     HomeContactComponent,
+    /* Abouts */
+    AboutAccueilComponent,
+    /* Projets */
+    ProjetAccueilComponent,
     /* Contact */
     ContactAccueilComponent,
+    ContactMessageComponent,
+    ContactCordoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HomeComponent,
+    AboutsComponent,
+    ProjetsComponent,
     ContactComponent
   ],
   providers: [],

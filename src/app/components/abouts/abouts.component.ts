@@ -1,24 +1,20 @@
 import { Component, ViewChild, ViewContainerRef, AfterViewInit, Renderer2, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ContactAccueilComponent } from './all/contact-accueil/contact-accueil.component';
-import { ContactCordoComponent } from './all/contact-cordo/contact-cordo.component';
-import { ContactMessageComponent } from './all/contact-message/contact-message.component';
+import { AboutAccueilComponent } from './all/about-accueil/about-accueil.component';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-abouts',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  templateUrl: './abouts.component.html',
+  styleUrl: './abouts.component.css'
 })
-export class ContactComponent implements AfterViewInit {
+export class AboutsComponent implements AfterViewInit {
   @ViewChild('sectionContainer', { read: ViewContainerRef }) sectionContainer!: ViewContainerRef;
 
   sections = [
-    { id: 'home', component: ContactAccueilComponent, css: ['particles-section'] },
-    { id: 'coordonée', component: ContactCordoComponent, css: [] },
-    { id: 'message', component: ContactMessageComponent, css: [] }
+    { id: 'home', component: AboutAccueilComponent, css: ['particles-section'] }
   ];
 
   constructor(private renderer: Renderer2) {}

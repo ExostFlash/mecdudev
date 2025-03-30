@@ -46,8 +46,7 @@
             "scripts": [
               "src/assets/javaScript/main.js",
               "src/assets/javaScript/loader.js",
-              "src/assets/javaScript/scrollPosition.js",
-              "src/assets/javaScript/carousel.js"
+              "src/assets/javaScript/scrollPosition.js"
             ]
           },
           "configurations": {
