@@ -68,7 +68,6 @@ export class HomeContactComponent {
       const formattedName = `${lastName} ${firstName}`;
 
       const newContact = {
-        ...formData,
         name: formattedName,
         email: formData.email.toLowerCase(),
         message: formData.msg,

@@ -1,33 +1,53 @@
 <?php
 
+use phpmailer\src\PHPMailer;
+use phpmailer\src\Exception;
+
+require 'vendor/autoload.php';
+
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données envoyées via POST
-    $name = htmlspecialchars($_POST["name"]);
-    $email = htmlspecialchars($_POST["email"]);
-    $message = htmlspecialchars($_POST["message"]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Lire le corps de la requête
+  $jsonData = file_get_contents("php://input");
+  
+  // Décoder le JSON en tableau associatif
+  $data = json_decode($jsonData, true);
 
-    $expediteur = "ton_email@example.com"; // L'email de l'expéditeur (toi)
-    $subject = "Nouveau message de contact";
+  // Vérifier si la donnée est bien un tableau
+  if (is_array($data)) {
+    $mail = new PHPMailer(true);
 
-    // Préparer les headers pour l'email
-    $headers = "From: $expediteur\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8";
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'mail.teamflash.fr'; // Remplace par ton SMTP
+        $mail->SMTPAuth = true;
+        $mail->Username = 'exostflash@teamflash.fr'; // Ton email d'envoi
+        $mail->Password = '@03A3m3yrmm302yr.'; // Ton mot de passe SMTP
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 465;
 
-    // Corps du message
-    $body = "Nom: $name\nEmail: $email\n\nMessage:\n$message";
+        $mail->setFrom('noreply@teamflash.fr', 'Team Flash - No Reply'); // Expéditeur
+        $mail->addAddress($email, $name); // Remplace par l'email du destinataire
+        $mail->addReplyTo($email, $name); // Permet de répondre à l'utilisateur
 
-    // Envoi de l'email
-    if (mail($email, $subject, $body, $headers)) {
-        echo json_encode(["status" => "success", "message" => "Message envoyé avec succès !"]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Erreur lors de l'envoi du message."]);
+        $mail->isHTML(true);
+        $mail->Subject = 'Nouveau message de contact';
+        $mail->Body = "<h2>Nom : $name</h2><p>Email : $email</p><p>Message : $message</p>";
+
+        $mail->send();
+        echo json_encode(['success' => true, 'message' => 'Message envoyé avec succès !']);
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => 'Erreur lors de l\'envoi du message.']);
     }
+  } else {
+    // Réponse d'erreur
+    http_response_code(400);
+    echo json_encode(["error" => "Format JSON invalide"]);
+  }
 } else {
-    echo json_encode(["status" => "error", "message" => "Requête invalide."]);
+    echo json_encode(['success' => false, 'message' => 'Méthode non autorisée.']);
 }
-?>
