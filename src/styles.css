@@ -20,3 +20,8 @@
 .bi-marg {
     margin-right: 10px;
 }
+
+.bi-marg-error {
+    margin-left: 10px;
+    color: #D92F2C;
+}

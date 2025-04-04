@@ -2,29 +2,42 @@
     <div class="text">
         <h2>Contactez-nous</h2>
         <div class="line" style="width: 34%;"></div>
-        <form id="contact-form">
+        <form [formGroup]="contactForm" (ngSubmit)="addContact()">
             <div class="form-group">
                 <label for="name">
                     <i class="bi bi-person-vcard bi-2X bi-marg"></i>
-                    <input type="text" id="name" name="name" placeholder="Nom et prénom" required>
+                    <input type="text" id="name" formControlName="name" placeholder="Nom et prénom">
                     <span class="focus-border"></span>
+                    <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="error">
+                        <i class="attention-icon bi bi-exclamation-triangle-fill bi-2X bi-marg-error" 
+                            [title]="getErrorName()"></i>
+                    </div>
                 </label>
             </div>
             <div class="form-group">
                 <label for="email">
                     <i class="bi bi-envelope-at bi-2X bi-marg"></i>
-                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="email" id="email" formControlName="email" placeholder="Email">
                     <span class="focus-border"></span>
+                    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error">
+                        <i class="attention-icon bi bi-exclamation-triangle-fill bi-2X bi-marg-error" 
+                           title="Veuillez entrer un email valide."></i>
+                    </div>
                 </label>
             </div>
             <div class="form-group">
                 <label for="message">
                     <i class="bi bi-chat-dots bi-2X bi-marg"></i>
-                    <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea>
+                    <textarea id="message" formControlName="msg" rows="4" placeholder="Message"></textarea>
                     <span class="focus-border"></span>
+                    <div *ngIf="contactForm.get('msg')?.invalid && contactForm.get('msg')?.touched" class="error">
+                        <i class="attention-icon bi bi-exclamation-triangle-fill bi-2X bi-marg-error" 
+                           [title]="getErrorMessage()"></i>
+                    </div>
                 </label>
+                
             </div>
-            <button id="contactButton" type="submit">Envoyer</button>
+            <button id="contactButton" type="submit" [disabled]="contactForm.invalid">Envoyer</button>
         </form>
     </div>
     <div class="image">
