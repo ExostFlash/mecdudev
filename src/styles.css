@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+.active-link {
+    color: #C30300 !important;
+    font-weight: bold;
+    border-bottom: 2px solid red;
+}
+
+.bi-2X {
+    font-size: 2rem;
+}
+
+.bi-3X {
+    font-size: 3rem;
+}
+
+.bi-4X {
+    font-size: 4rem;
+}
+
+.bi-marg {
+    margin-right: 10px;
+}
+
+.bi-marg-error {
+    margin-left: 10px;
+    color: #D92F2C;
+}
