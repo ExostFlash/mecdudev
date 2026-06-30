@@ -21,13 +21,6 @@ export class HomeProjetsComponent implements AfterViewInit, OnDestroy {
 
   nosProjets = [
     {
-      Name: 'MecDu.Dev',
-      Link: 'mecdu.dev',
-      Logo: 'mecdudev.png',
-      Description:
-        "Ce site professionnel est conçu pour présenter les projets que nous avons réalisés pour divers clients. Vous y trouverez une sélection de nos travaux, illustrant notre expertise et notre engagement à fournir des services de haute qualité. Chaque projet présenté ici reflète notre capacité à répondre aux besoins spécifiques de nos clients, qu'il s'agisse de particuliers ou d'entreprises. Nous vous invitons à parcourir nos réalisations pour découvrir comment nous pouvons vous aider à atteindre vos objectifs.",
-    },
-    {
       Name: 'Citapote',
       Link: 'citapote.lehub.tf',
       Logo: 'citapote.png',
@@ -36,17 +29,10 @@ export class HomeProjetsComponent implements AfterViewInit, OnDestroy {
     },
     {
       Name: 'Mixify',
-      Link: '/',
-      Logo: 'no.png',
+      Link: 'mixify.lehub.tf',
+      Logo: 'mixify.png',
       Description:
         "Mixify est une plateforme dédiée à la création de bars virtuels pour des soirées entre amis. Sur Mixify, vous pouvez créer votre propre espace, inviter vos amis, et organiser des soirées conviviales, tout en partageant des cocktails et des discussions animées. La plateforme offre des fonctionnalités interactives pour personnaliser votre bar virtuel et rendre chaque soirée unique et mémorable. Que ce soit pour une fête d'anniversaire, une soirée à thème, ou simplement pour se retrouver, Mixify rend vos soirées plus fun et engageantes.",
-    },
-    {
-      Name: 'PixelPanda',
-      Link: '/',
-      Logo: 'pixelpanda.webp',
-      Description:
-        'PixelPanda est un bot discord développer par les soins de MecDu.Dev. Ce bot peux faire quelque chose mais sera plus utiliser sur le discord de mes étude.',
     },
   ];
 
