@@ -7,7 +7,9 @@
         <div class="carousel-inner" #carouselInner>
           <div class="slide" *ngFor="let projet of nosProjets">
             <img
-              [src]="'/assets/images/projets/' + (projet.Logo || 'default.png')"
+              [src]="
+                './assets/images/projets/' + (projet.Logo || 'default.png')
+              "
               [alt]="'Logo ' + projet.Name"
               loading="lazy"
             />
@@ -30,7 +32,7 @@
   </div>
   <div class="image screenNone">
     <img
-      src="/assets/images/section/projets1.png"
+      src="./assets/images/section/projets1.png"
       alt="Projets"
       loading="lazy"
     />
