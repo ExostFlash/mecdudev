@@ -1,28 +1,38 @@
-<div class="content">
-    <div class="text">
-        <h2>Nos Projets</h2>
-        <div class="line" style="width: 25%;"></div>
-        <div class="container">
-            <div class="carousel">
-                <div class="carousel-inner" #carouselInner>
-                    <div class="slide" *ngFor="let projet of nosProjets">
-                        <img [src]="'/assets/images/projets/' + (projet.Logo || 'default.png')" [alt]="'Logo ' + projet.Name" loading="lazy">
-                        <h3>
-                            <span class="arrow right"></span>
-                            <a [href]="getSafeUrl(projet.Link)" target="_blank">{{ projet.Name }}</a>
-                        </h3>
-                        <p>{{ projet.Description }}</p>
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <span id="prev" class="arrow left" #prevButton></span>
-                    <span id="next" class="arrow right" #nextButton></span>
-                </div>
-                <div class="carousel-dots" #dotsContainer></div>
-            </div>            
+<div class="content" id="projets">
+  <div class="text">
+    <h2>Nos Projets</h2>
+    <div class="line" style="width: 25%"></div>
+    <div class="container">
+      <div class="carousel">
+        <div class="carousel-inner" #carouselInner>
+          <div class="slide" *ngFor="let projet of nosProjets">
+            <img
+              [src]="'/assets/images/projets/' + (projet.Logo || 'default.png')"
+              [alt]="'Logo ' + projet.Name"
+              loading="lazy"
+            />
+            <h3>
+              <span class="arrow right"></span>
+              <a [href]="getSafeUrl(projet.Link)" target="_blank">{{
+                projet.Name
+              }}</a>
+            </h3>
+            <p>{{ projet.Description }}</p>
+          </div>
         </div>
+        <div class="carousel-controls">
+          <span id="prev" class="arrow left" #prevButton></span>
+          <span id="next" class="arrow right" #nextButton></span>
+        </div>
+        <div class="carousel-dots" #dotsContainer></div>
+      </div>
     </div>
-    <div class="image screenNone">
-        <img src="/assets/images/section/projets1.png" alt="Projets" loading="lazy">
-    </div>
+  </div>
+  <div class="image screenNone">
+    <img
+      src="/assets/images/section/projets1.png"
+      alt="Projets"
+      loading="lazy"
+    />
+  </div>
 </div>

@@ -1,22 +1,44 @@
 <div class="navbar-div">
-    <nav class="navbar">
-        <a href="/"><img src="/assets/images/logo/initial.png" alt="Logo TeamFlash" class="logo"></a>
-        <ul>
-            <li>
-                <a routerLink="/" 
-                routerLinkActive="active-link" 
-                [routerLinkActiveOptions]="{ exact: isHomeActiveBool() }"
-                [class.active-link]="isHomeActive()">Accueil</a>
-            </li>
-            <li>
-                <a routerLink="abouts" routerLinkActive="active-link">À propos</a>
-            </li>
-            <li>
-                <a routerLink="projets" routerLinkActive="active-link">Projets</a>
-            </li>
-            <li>
-                <a routerLink="contact" routerLinkActive="active-link">Contact</a>
-            </li>
-        </ul>
-    </nav>
+  <nav class="navbar">
+    <a href="/"
+      ><img
+        src="/assets/images/logo/initial.png"
+        alt="Logo TeamFlash"
+        class="logo"
+    /></a>
+    <ul>
+      <li>
+        <a
+          href="/"
+          (click)="scrollTo('home', $event)"
+          [class.active-link]="activeId === 'home'"
+          >Accueil</a
+        >
+      </li>
+      <li>
+        <a
+          href="#abouts"
+          (click)="scrollTo('abouts', $event)"
+          [class.active-link]="activeId === 'abouts'"
+          >À propos</a
+        >
+      </li>
+      <li>
+        <a
+          href="#projets"
+          (click)="scrollTo('projets', $event)"
+          [class.active-link]="activeId === 'projets'"
+          >Projets</a
+        >
+      </li>
+      <li>
+        <a
+          href="#contact"
+          (click)="scrollTo('contact', $event)"
+          [class.active-link]="activeId === 'contact'"
+          >Contact</a
+        >
+      </li>
+    </ul>
+  </nav>
 </div>

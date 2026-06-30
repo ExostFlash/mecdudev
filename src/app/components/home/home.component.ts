@@ -1,4 +1,11 @@
-import { Component, ViewChild, ViewContainerRef, AfterViewInit, Renderer2, Type } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ViewContainerRef,
+  AfterViewInit,
+  Renderer2,
+  Type,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeAccueilComponent } from './all/home-accueil/home-accueil.component';
@@ -12,17 +19,18 @@ import { HomeContactComponent } from './all/home-contact/home-contact.component'
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements AfterViewInit {
-  @ViewChild('sectionContainer', { read: ViewContainerRef }) sectionContainer!: ViewContainerRef;
+  @ViewChild('sectionContainer', { read: ViewContainerRef })
+  sectionContainer!: ViewContainerRef;
 
   sections = [
     { id: 'home', component: HomeAccueilComponent, css: ['particles-section'] },
     { id: 'about', component: HomeAboutComponent, css: [] },
     { id: 'project', component: HomeProjetsComponent, css: [] },
     /* { id: 'clients', component: HomeClientsComponent, css: [] }, */
-    { id: 'contact', component: HomeContactComponent, css: [] }
+    { id: 'contact', component: HomeContactComponent, css: [] },
   ];
 
   constructor(private renderer: Renderer2) {}
@@ -45,7 +53,9 @@ export class HomeComponent implements AfterViewInit {
     const sectionElement = this.renderer.createElement('section');
     this.renderer.setAttribute(sectionElement, 'id', id);
 
-    cssClasses.forEach(className => this.renderer.addClass(sectionElement, className));
+    cssClasses.forEach((className) =>
+      this.renderer.addClass(sectionElement, className),
+    );
 
     const hostElement = this.sectionContainer.element.nativeElement;
     this.renderer.appendChild(hostElement, sectionElement);
@@ -53,8 +63,14 @@ export class HomeComponent implements AfterViewInit {
     return sectionElement;
   }
 
-  private appendComponentToSection(sectionElement: HTMLElement, component: Type<any>): void {
+  private appendComponentToSection(
+    sectionElement: HTMLElement,
+    component: Type<any>,
+  ): void {
     const componentRef = this.sectionContainer.createComponent(component);
-    this.renderer.appendChild(sectionElement, componentRef.location.nativeElement);
+    this.renderer.appendChild(
+      sectionElement,
+      componentRef.location.nativeElement,
+    );
   }
 }
